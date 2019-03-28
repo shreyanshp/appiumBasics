@@ -19,8 +19,6 @@ public class AndroidCreateSessionTest extends BaseTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", "Android Emulator");
         capabilities.setCapability("app", app.getAbsolutePath());
-        //capabilities.setCapability("appPackage", "io.appium.android.apis");
-        //apabilities.setCapability("appActivity", ".ApiDemos");
         driver = new AndroidDriver<WebElement>(getServiceUrl(), capabilities);
     }
 
@@ -34,7 +32,7 @@ public class AndroidCreateSessionTest extends BaseTest {
         String activity = driver.currentActivity();
         String pkg = driver.getCurrentPackage();
         System.out.println(activity +"----"+ pkg);
-        //Assert.assertEquals(activity, ".ApiDemos");
-        //Assert.assertEquals(pkg, "io.appium.android.apis");
+        Assert.assertEquals(activity, ".app.MainActivity");
+        Assert.assertEquals(pkg, "com.lalamove.techchallenge");
     }
 }

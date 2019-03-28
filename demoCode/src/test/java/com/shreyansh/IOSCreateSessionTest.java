@@ -18,13 +18,13 @@ public class IOSCreateSessionTest extends BaseTest {
     public void setUp() throws Exception {
         File classpathRoot = new File(System.getProperty("user.dir"));
         File appDir = new File(classpathRoot, "../apps");
-        File app = new File(appDir.getCanonicalPath(), "TestApp.app.zip");
+        File app = new File(appDir.getCanonicalPath(), "app-tech-ios-challenge-simulator-20190125.zip");
 
         String deviceName = System.getenv("IOS_DEVICE_NAME");
         String platformVersion = System.getenv("IOS_PLATFORM_VERSION");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", deviceName == null ? "iPhone 6s" : deviceName);
-        capabilities.setCapability("platformVersion", platformVersion == null ? "11.1" : platformVersion);
+        capabilities.setCapability("platformVersion", platformVersion == null ? "12.0" : platformVersion);
         capabilities.setCapability("app", app.getAbsolutePath());
         capabilities.setCapability("automationName", "XCUITest");
         driver = new IOSDriver<WebElement>(getServiceUrl(), capabilities);
@@ -40,6 +40,6 @@ public class IOSCreateSessionTest extends BaseTest {
         // Check that the XCUIElementTypeApplication was what we expect it to be
         IOSElement applicationElement = (IOSElement) driver.findElementByClassName("XCUIElementTypeApplication");
         String applicationName = applicationElement.getAttribute("name");
-        Assert.assertEquals(applicationName, "TestApp");
+        Assert.assertEquals(applicationName, "LalaTest");
     }
 }

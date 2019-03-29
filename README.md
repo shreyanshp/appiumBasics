@@ -1,6 +1,17 @@
 # lalamove
 
-create alias kill4723='lsof -n -i4TCP:4723 | grep LISTEN | awk '\''{ print  }'\'' | xargs kill' to kill appium server after test
+## First Steps
+Install [Node](https://nodejs.org/en/download/)
+
+Install [Appium](http://appium.io/docs/en/about-appium/getting-started/) `
+npm install -g appium
+`  
+Install [XCode 10](https://developer.apple.com/xcode/)
+
+Install [Android Studio](https://developer.android.com/studio/install)
+
+Set alias kill4723='lsof -n -i4TCP:4723 | grep LISTEN | awk '\''{ print  }'\'' | xargs kill' 
+to kill appium server after test
 
 ## Android
 Set ANDROID_HOME

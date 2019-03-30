@@ -10,6 +10,8 @@ Install [XCode 10](https://developer.apple.com/xcode/)
 
 Install [Android Studio](https://developer.android.com/studio/install)
 
+Run [testng.xml](/demoCode/testng.xml)
+
 Set alias kill4723='lsof -n -i4TCP:4723 | grep LISTEN | awk '\''{ print  }'\'' | xargs kill' 
 to kill appium server after test
 

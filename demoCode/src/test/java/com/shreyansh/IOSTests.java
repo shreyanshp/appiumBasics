@@ -72,7 +72,6 @@ public class IOSTests extends BaseTest {
     @Test
     public void clickFirstCell () {
         List<WebElement> windowElements = driver.findElementsByClassName("XCUIElementTypeCell");
-        System.out.println("---------"+windowElements.get(0).getText()+"----------");
         windowElements.get(0).click();
 
     }
@@ -92,7 +91,7 @@ public class IOSTests extends BaseTest {
                 .until(ExpectedConditions.visibilityOfElementLocated(MobileBy.AccessibilityId(buttonElementId)));
         buttonElement.click();
 
-        IOSElement applicationElement = (IOSElement) driver.findElementsByAccessibilityId("Back");
+        IOSElement applicationElement = (IOSElement) driver.findElementByAccessibilityId("Back");
         applicationElement.click();
 
         IOSElement backPageElements = (IOSElement) new WebDriverWait(driver, 30)

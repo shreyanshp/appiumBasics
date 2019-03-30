@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="lalamove"
+           tests="6"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="13.959">
+  <properties />
+  
+  
+            <testcase name="clickCell2" time="7.587" classname="com.shreyansh.IOSTests" />
+                <testcase name="checkDeliveryTable" time="0.400" classname="com.shreyansh.IOSTests" />
+                <testcase name="clickFirstCell" time="2.114" classname="com.shreyansh.IOSTests" />
+                <testcase name="checkApplication" time="0.735" classname="com.shreyansh.IOSTests" />
+                <testcase name="countInitialDeliveries" time="2.724" classname="com.shreyansh.IOSTests" />
+                <testcase name="checkNavigationBar" time="0.399" classname="com.shreyansh.IOSTests" />
+      
+</testsuite>

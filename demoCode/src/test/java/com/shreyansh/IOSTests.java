@@ -1,8 +1,11 @@
 package com.shreyansh;
 
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,12 +16,14 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class IOSTests extends BaseTest {
     private IOSDriver<WebElement> driver;
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun=true)
     public void setUp() throws Exception {
         File classpathRoot = new File(System.getProperty("user.dir"));
         File appDir = new File(classpathRoot, "../apps");
@@ -40,7 +45,7 @@ public class IOSTests extends BaseTest {
     }
 
     @Test
-    public void checkApplication () {
+    public void checkApplication() {
         IOSElement applicationElement = (IOSElement) driver.findElementByClassName("XCUIElementTypeApplication");
         String applicationName = applicationElement.getAttribute("name");
         Assert.assertEquals(applicationName, "LalaTest");
@@ -50,34 +55,35 @@ public class IOSTests extends BaseTest {
     }
 
     @Test
-    public void checkNavigationBar () {
+    public void checkNavigationBar() {
         IOSElement applicationElement = (IOSElement) driver.findElementByClassName("XCUIElementTypeNavigationBar");
         String navigationBar = applicationElement.getAttribute("name");
         Assert.assertEquals(navigationBar, "Delivery List");
     }
 
     @Test
-    public void checkDeliveryTable () {
+    public void checkDeliveryTable() {
         IOSElement applicationElement = (IOSElement) driver.findElementByClassName("XCUIElementTypeTable");
         String deliveryTable = applicationElement.getAttribute("name");
         Assert.assertEquals(deliveryTable, "DeliveriesTableView");
     }
 
     @Test
-    public void countInitialDeliveries () {
+    public void countInitialDeliveries() {
         List<WebElement> windowElements = driver.findElementsByClassName("XCUIElementTypeCell");
         Assert.assertTrue(windowElements.size() == 20);
     }
 
     @Test
-    public void clickFirstCell () {
+    public void clickFirstCell() {
         List<WebElement> windowElements = driver.findElementsByClassName("XCUIElementTypeCell");
+        //System.out.println("-----"+driver.getPageSource()+"-------");
         windowElements.get(0).click();
 
     }
 
     @Test
-    public void clickCell2 () {
+    public void checkTransitionOnClickingCell() {
         List<WebElement> windowElements = driver.findElementsByClassName("XCUIElementTypeCell");
         System.out.println("---------"+windowElements.get(0).getText()+"----------");
         windowElements.get(0).click();
@@ -98,6 +104,29 @@ public class IOSTests extends BaseTest {
                 .until(ExpectedConditions.visibilityOfElementLocated(MobileBy.className("XCUIElementTypeNavigationBar")));
         Assert.assertEquals(backPageElements.getAttribute("name"), "Delivery List");
 
+    }
+
+    @Test
+    public void checkRefresh() {
+        List<WebElement> windowElements = driver.findElementsByClassName("XCUIElementTypeCell");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        Map<String, Object> params = new HashMap<>();
+        params.put("direction", "down");
+        js.executeScript("mobile: swipe", params);
+        List<WebElement> windowScrolledElements = driver.findElementsByClassName("XCUIElementTypeCell");
+        Assert.assertTrue(windowScrolledElements.size() == 20);
+    }
+
+    @Test
+    public void checkScroll() {
+        List<WebElement> windowElements = driver.findElementsByClassName("XCUIElementTypeCell");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        Map<String, Object> params = new HashMap<>();
+        params.put("direction", "down");
+        params.put("element", windowElements.get(19));
+        js.executeScript("mobile: scroll", params);
+        List<WebElement> windowScrolledElements = driver.findElementsByClassName("XCUIElementTypeCell");
+        Assert.assertTrue(windowScrolledElements.size() == 40);
     }
 
 }

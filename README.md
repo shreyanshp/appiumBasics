@@ -1,4 +1,6 @@
 # lalamove
+## Basic Test Cases
+[TestCases.md](/TestCases.md)
 
 ## First Steps
 Install [Node](https://nodejs.org/en/download/)

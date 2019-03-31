@@ -39,7 +39,7 @@ public class IOSTests extends BaseTest {
         driver = new IOSDriver<WebElement>(getServiceUrl(), capabilities);
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun=true)
     public void tearDown() {
         driver.quit();
     }
@@ -128,5 +128,6 @@ public class IOSTests extends BaseTest {
         List<WebElement> windowScrolledElements = driver.findElementsByClassName("XCUIElementTypeCell");
         Assert.assertTrue(windowScrolledElements.size() == 40);
     }
+
 
 }

@@ -17,3 +17,5 @@
 
 
 ## iOS specific
+
+- Turn off internet after initial load, and pull down to refresh the page, user should see some meaningful error message

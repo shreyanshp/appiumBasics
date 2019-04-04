@@ -5,7 +5,9 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
+import io.appium.java_client.remote.IOSMobileCapabilityType;
 import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.mobile.NetworkConnection;
@@ -40,6 +42,7 @@ public class IOSTestsWifiOff extends BaseTest {
         capabilities.setCapability("platformVersion", platformVersion == null ? "12.0" : platformVersion);
         capabilities.setCapability("app", app.getAbsolutePath());
         capabilities.setCapability("automationName", "XCUITest");
+        capabilities.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.apple.Preferences");
         driver = new IOSDriver<WebElement>(getServiceUrl(), capabilities);
     }
 
@@ -53,7 +56,7 @@ public class IOSTestsWifiOff extends BaseTest {
 
     @Test
     public void checkRefreshwithWifiOff() {
-        wifiOff();
+        enableWifi(false);
         List<WebElement> windowElements = driver.findElementsByClassName("XCUIElementTypeCell");
         JavascriptExecutor js = (JavascriptExecutor) driver;
         Map<String, Object> params = new HashMap<>();
@@ -70,5 +73,19 @@ public class IOSTestsWifiOff extends BaseTest {
             // enabling Airplane mode
             mobileDriver.setNetworkConnection(NetworkConnection.ConnectionType.AIRPLANE_MODE);
         }
+    }
+
+    //Element's info
+     By wifiTab = MobileBy.xpath("//XCUIElementTypeCell[@visible='true' and @name='Wi-Fi']");
+     By wifiBtn = MobileBy.xpath("//XCUIElementTypeSwitch[@visible='true' and @name='Wi-Fi']");
+    public  void enableWifi(boolean expectedWifiStatus) {
+        driver.findElement(wifiTab).click(); // To open Settings > Wi-fi
+        if (isWifiEnabled() != expectedWifiStatus) {
+            driver.findElement(wifiBtn).click(); // To switch Wi-fi
+        }
+    }
+
+    public  boolean isWifiEnabled() {
+        return driver.findElement(wifiBtn).getAttribute("value").equals("1");
     }
 }

@@ -28,3 +28,7 @@ create alias emu28='./Library/Android/sdk/emulator/emulator -avd Pixel_2_API_28'
 brew install carthage
 
 Allow network access to WebDriver
+
+
+## Test Report
+- Using ReportNG, we are generating reports at this output folder, [test-output](/demoCode/test-output), in [HTML](/demoCode/test-output/html/index.html) and [XML](/demoCode/test-output/xml/com.shreyansh.IOSTests_results.xml) format 

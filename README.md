@@ -1,4 +1,4 @@
-# lalamove
+# appiumBasics
 ## Basic Test Cases
 [TestCases.md](/TestCases.md)
 

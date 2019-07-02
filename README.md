@@ -14,13 +14,13 @@ Install [Android Studio](https://developer.android.com/studio/install)
 
 Run [testng.xml](/demoCode/testng.xml)
 
-Set alias kill4723='lsof -n -i4TCP:4723 | grep LISTEN | awk '\''{ print  }'\'' | xargs kill' 
+Set `alias kill4723='lsof -n -i4TCP:4723 | grep LISTEN | awk '\''{ print  }'\'' | xargs kill' `
 to kill appium server after test
 
 ## Android
 Set ANDROID_HOME
 
-create alias emu28='./Library/Android/sdk/emulator/emulator -avd Pixel_2_API_28' to start the emulator 
+create `alias emu28='./Library/Android/sdk/emulator/emulator -avd Pixel_2_API_28'` to start the emulator 
 
 
 ## IOS
